@@ -1,0 +1,37 @@
+server:
+  port: 9999
+logging:
+  level:
+    reactor.netty: DEBUG
+    reactor.netty.http.client logging: DEBUG
+    reactor.netty.http.client.HttpClient: DEBUG
+    org.springframework.cloud.gateway: TRACE
+    org.springframework.http.server.reactive: TRACE
+spring:
+  application:
+    name: api-gateway
+  session:
+    timeout: 44
+  cloud:
+    gateway:
+      httpclient:
+        wiretap: true
+      httpserver:
+        wiretap: true
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            token-uri: http://localhost:8080/auth/realms/master/protocol/openid-connect/token
+            authorization-uri: http://localhost:8080/auth/realms/master/protocol/openid-connect/auth
+            userinfo-uri: http://localhost:8080/auth/realms/master/protocol/openid-connect/userinfo
+            user-name-attribute: preferred_username
+        registration:
+          springcloud-api-gateway:
+            provider: keycloak
+            client-id: springcloud-api-gateway
+            client-secret: dcf593f2-d2d0-448a-81b0-af47b0a4e6bd
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/login/oauth2/code/keycloak"
+

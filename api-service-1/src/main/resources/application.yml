@@ -1,0 +1,20 @@
+server:
+  port: 7070
+logging:
+  level:
+    de.enrhop.examples.springcloud.service1: DEBUG
+    reactor.netty: DEBUG
+    reactor.netty.http.client logging: DEBUG
+    reactor.netty.http.client.HttpClient: DEBUG
+    org.springframework.cloud.gateway: TRACE
+    org.springframework.http.server.reactive: TRACE
+    org.springframework.security: DEBUG
+    org.springframework.web.reactive.function.client: TRACE
+spring:
+  application:
+    name: api-service-1
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/auth/realms/master
