@@ -18,3 +18,8 @@ spring:
       resourceserver:
         jwt:
           issuer-uri: http://localhost:8080/auth/realms/master
+          jwk-set-uri: http://localhost:8080/auth/realms/master/protocol/openid-connect/certs
+        opaquetoken:
+          introspection-uri: http://localhost:8080/auth/realms/master/protocol/openid-connect/token/introspect
+          client-id: springcloud-api-gateway
+          client-secret: dcf593f2-d2d0-448a-81b0-af47b0a4e6bd
